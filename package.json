@@ -1,0 +1,20 @@
+{
+    "name": "prompt-mongo-middleware",
+    "version": "1.0.0",
+    "description": "Middleware to sync Salesforce PromptTemplateVersion to MongoDB",
+    "main": "middleware.js",
+    "scripts": {
+        "start": "node middleware.js"
+    },
+    "author": "Anju Anto",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.20.4",
+        "dotenv": "^16.6.1",
+        "express": "^4.22.1",
+        "mongodb": "^5.9.2"
+    },
+    "keywords": [],
+    "type": "commonjs",
+    "devDependencies": {}
+}
