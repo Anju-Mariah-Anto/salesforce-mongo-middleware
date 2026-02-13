@@ -12,9 +12,17 @@
         "body-parser": "^1.20.4",
         "dotenv": "^16.6.1",
         "express": "^4.22.1",
-        "mongodb": "^5.9.2"
+        "mongodb": "^7.1.0"
     },
     "keywords": [],
     "type": "commonjs",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Anju-Mariah-Anto/salesforce-mongo-middleware.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Anju-Mariah-Anto/salesforce-mongo-middleware/issues"
+    },
+    "homepage": "https://github.com/Anju-Mariah-Anto/salesforce-mongo-middleware#readme",
     "devDependencies": {}
 }

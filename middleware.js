@@ -20,10 +20,11 @@ const dbName = process.env.MONGO_DB_NAME;
 
 // Helper to connect to MongoDB
 async function getMongoClient() {
-    const client = new MongoClient(mongoUri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    // const client = new MongoClient(mongoUri, {
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true
+    // });
+    const client = new MongoClient(mongoUri);
     await client.connect();
     return client;
 }
