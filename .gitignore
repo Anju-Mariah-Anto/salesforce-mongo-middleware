@@ -6,3 +6,9 @@ node_modules/
 
 # Logs
 npm-debug.log
+
+# Build Artifacts
+function.zip
+
+# OSX System Files
+.DS_Store

@@ -5,6 +5,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const serverless = require('serverless-http');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
@@ -32,7 +33,7 @@ async function getMongoClient() {
 /**
  * UPSERT endpoint
  */
-app.post('/sync_prompt_versions', async (req, res) => {
+app.post(['/sync_prompt_versions', '*/sync_prompt_versions'], async (req, res) => {
     const domain = req.query.domain || 'Prompt';
     const payload = req.body;
 
@@ -69,7 +70,7 @@ app.post('/sync_prompt_versions', async (req, res) => {
 /**
  * DELETE endpoint
  */
-app.post('/delete_prompt_versions', async (req, res) => {
+app.post(['/delete_prompt_versions', '*/delete_prompt_versions'], async (req, res) => {
     const domain = req.query.domain || 'Prompt';
     const payload = req.body;
 
@@ -99,7 +100,7 @@ app.post('/delete_prompt_versions', async (req, res) => {
 /**
  * UPSERT Member Dependencies endpoint
  */
-app.post('/sync_member_dependencies', async (req, res) => {
+app.post(['/sync_member_dependencies', '*/sync_member_dependencies'], async (req, res) => {
     const payload = req.body;
 
     // Validate payload
@@ -187,7 +188,12 @@ app.post('/sync_member_dependencies', async (req, res) => {
 });
 
 // Health check
-app.get('/health', (req, res) => res.send({ status: 'ok' }));
+app.get(['/health', '*/health'], (req, res) => res.send({ status: 'ok' }));
 
-// Start server
-app.listen(port, () => console.log(`Mongo Middleware running on port ${port}`));
+// Start server locally if run directly
+if (require.main === module) {
+    app.listen(port, () => console.log(`Mongo Middleware running on port ${port}`));
+}
+
+// Export the wrapped app for AWS Lambda
+module.exports.handler = serverless(app);
